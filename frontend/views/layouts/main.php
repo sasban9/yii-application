@@ -4,8 +4,8 @@
 /* @var $content string */
 
 use yii\helpers\Html;
-use yii\bootstrap4\Nav;
-use yii\bootstrap4\NavBar;
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
@@ -31,9 +31,9 @@ AppAsset::register($this);
     NavBar::begin([
         'brandLabel' => Yii::$app->name,
         'brandUrl' => Yii::$app->homeUrl,
-        // 'options' => [
-        //     'class' => 'navbar bg-success navbar-fixed-top',
-        // ],
+        'options' => [
+            'class' => 'navbar-inverse navbar-fixed-top',
+        ],
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],

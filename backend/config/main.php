@@ -8,18 +8,11 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
-    'name' => 'SasTube',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
-    'bootstrap' => ['gii'],
+    'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
-        'assetManager' => [
-            'appendTimestamp' => true
-        ],
-        'authManager' => [
-            'class' => 'yii\rbac\DbManager',
-        ],
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
@@ -44,13 +37,10 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'video/view/<id>' => 'video/view',
-                'video/update/<id>' => 'video/update',
             ],
         ],
         
