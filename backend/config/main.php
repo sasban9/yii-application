@@ -56,7 +56,7 @@ return [
             'class' => 'yii\gii\Module',
         ],
         'rbac' =>  [
-            'class' => 'johnitvn\rbacplus\Module',
+            'class' => 'app\rbacplus\Module',
             'userModelClassName'=>null,
             'userModelIdField'=>'id',
             'userModelLoginField'=>'username',

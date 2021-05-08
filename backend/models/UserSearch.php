@@ -43,6 +43,7 @@ class UserSearch extends User
         $query = User::find();
 
         // add conditions that should always apply here
+        if(\Yii::$app->user->identity)$query = $query->where(['group_id' => \Yii::$app->user->identity->group_id]);
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -62,6 +63,7 @@ class UserSearch extends User
             'status' => $this->status,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
+            'group_id' => $this->group_id,
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])
