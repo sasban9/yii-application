@@ -14,6 +14,9 @@ return [
     'bootstrap' => ['gii'],
     'modules' => [],
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
@@ -48,9 +51,20 @@ return [
         
     ],
     'modules' => [
+        'gridview' => ['class' => 'kartik\grid\Module'],
         'gii' => [
             'class' => 'yii\gii\Module',
         ],
+        'rbac' =>  [
+            'class' => 'johnitvn\rbacplus\Module',
+            'userModelClassName'=>null,
+            'userModelIdField'=>'id',
+            'userModelLoginField'=>'username',
+            'userModelLoginFieldLabel'=>null,
+            'userModelExtraDataColumls'=>null,
+            'beforeCreateController'=>null,
+            'beforeAction'=>null
+        ]
     ],
     'params' => $params,
 ];

@@ -37,7 +37,19 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Users', 'url' => ['/user']],
+        [
+            'label' => 'Users', 
+            //'url' => ['/user'],
+            'items' => [
+                ['label' => 'Users', 'url' => '/user'],
+                '<li class="divider"></li>',
+                '<li class="dropdown-header">RBAC</li>',
+                ['label' => 'Assigment', 'url' => '/rbac/assignment'],
+                ['label' => 'Roles', 'url' => '/rbac/role'],                                         
+                ['label' => 'Permissions', 'url' => '/rbac/permission'],                                         
+                // ['label' => 'Rules', 'url' => '/rbac/rule'],                                         
+            ]
+        ],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
