@@ -8,9 +8,10 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
+    'name' => 'Backend Guru',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
-    'bootstrap' => ['log'],
+    'bootstrap' => ['gii'],
     'modules' => [],
     'components' => [
         'request' => [
@@ -37,14 +38,19 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+        
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
             ],
         ],
-        */
+        
+    ],
+    'modules' => [
+        'gii' => [
+            'class' => 'yii\gii\Module',
+        ],
     ],
     'params' => $params,
 ];
