@@ -17,6 +17,7 @@ use Yii;
  * @property int $created_at
  * @property int $updated_at
  * @property string|null $verification_token
+ * @property int $group_id
  */
 class User extends \yii\db\ActiveRecord
 {
@@ -34,8 +35,8 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
-            [['status', 'created_at', 'updated_at'], 'integer'],
+            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at', 'group_id'], 'required'],
+            [['status', 'created_at', 'updated_at', 'group_id'], 'integer'],
             [['username', 'password_hash', 'password_reset_token', 'email', 'verification_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
             [['username'], 'unique'],
@@ -60,6 +61,7 @@ class User extends \yii\db\ActiveRecord
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
             'verification_token' => Yii::t('app', 'Verification Token'),
+            'group_id' => Yii::t('app', 'Group ID'),
         ];
     }
 }

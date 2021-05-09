@@ -16,6 +16,10 @@ $columns = [
         'attribute' => Yii::$app->getModule('rbac')->userModelLoginField,
     ],
     [
+        'class' => '\kartik\grid\DataColumn',
+        'attribute' => Yii::$app->getModule('rbac')->userModelExtraDataColumls,
+    ],
+    [
         'label' => 'Roles',
         'content' => function($model) {
             $authManager = Yii::$app->authManager;

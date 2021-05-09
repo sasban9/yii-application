@@ -61,7 +61,14 @@ return [
             'userModelIdField'=>'id',
             'userModelLoginField'=>'username',
             'userModelLoginFieldLabel'=>null,
-            'userModelExtraDataColumls'=>null,
+            'userModelExtraDataColumls'=>[
+                [
+                    'attributes' => 'group_id',
+                    // 'value'=>function($model){
+                    //     return $model->group_id;
+                    // }
+                ]
+            ],
             'beforeCreateController'=>null,
             'beforeAction'=>null
         ]
