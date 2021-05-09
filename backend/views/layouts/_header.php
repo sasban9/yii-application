@@ -13,7 +13,7 @@ NavBar::begin([
     // ],
 ]);
 $menuItems = [
-    ['label' => 'Home', 'url' => ['/site/index']],
+    ['label' => 'Create', 'url' => ['/video/create']],
     [
         'label' => 'Users', 
         //'url' => ['/user'],

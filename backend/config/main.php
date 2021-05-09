@@ -8,7 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
-    'name' => 'Backend Guru',
+    'name' => 'SasTube',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['gii'],
@@ -49,6 +49,8 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'video/view/<id>' => 'video/view',
+                'video/update/<id>' => 'video/update',
             ],
         ],
         

@@ -79,13 +79,12 @@ class VideoController extends Controller
     {
         $model = new Video();
 
-        
-
         if ($this->request->isPost) {
-            $file = UploadedFile::getInstanceByName('video');
-        echo '<pre>';var_dump($file);echo '</pre>';exit;
-            if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'id' => $model->video_id]);
+            $model->video =  UploadedFile::getInstanceByName('video');
+            
+            #echo '<pre>';var_dump($file);echo '</pre>';exit;
+            if ($this->request->isPost && $model->save()) {
+                return $this->redirect(['update', 'id' => $model->video_id]);
             }
         } else {
             $model->loadDefaultValues();
