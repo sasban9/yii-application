@@ -14,6 +14,9 @@ return [
     'bootstrap' => ['gii'],
     'modules' => [],
     'components' => [
+        'assetManager' => [
+            'appendTimestamp' => true
+        ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
         ],
