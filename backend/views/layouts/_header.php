@@ -1,12 +1,13 @@
 <?php
 
 use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
+use yii\bootstrap4\Nav;
+use yii\bootstrap4\NavBar;
 
 NavBar::begin([
     'brandLabel' => Yii::$app->name,
     'brandUrl' => Yii::$app->homeUrl,
+    'options' => ['class' => 'navbar-expand-lg navbar-light alert-primary shadow-sm']
     // 'options' => [
     //     'class' => 'navbar-inverse navbar-fixed-top',
     // ],
@@ -18,8 +19,8 @@ $menuItems = [
         //'url' => ['/user'],
         'items' => [
             ['label' => 'Users', 'url' => '/user'],
-            '<li class="divider"></li>',
-            '<li class="dropdown-header">RBAC</li>',
+            ['label' => '<hr class="dropdown-divider">'],
+            // '<li class="dropdown-header">RBAC</li>',
             ['label' => 'Assigment', 'url' => '/rbac/assignment'],
             ['label' => 'Roles', 'url' => '/rbac/role'],                                         
             ['label' => 'Permissions', 'url' => '/rbac/permission'],                                         
