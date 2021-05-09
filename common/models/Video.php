@@ -40,6 +40,7 @@ class Video extends \yii\db\ActiveRecord
             [['video_id'], 'string', 'max' => 16],
             [['title', 'tags', 'video_name'], 'string', 'max' => 512],
             [['video_id'], 'unique'],
+            [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => 'user_id'],
         ];
     }
 
@@ -60,6 +61,16 @@ class Video extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('app', 'Updated At'),
             'created_by' => Yii::t('app', 'Created By'),
         ];
+    }
+
+    /**
+     * Gets query for [[CreatedBy]].
+     * 
+     * @return \yii\db\ActiveQuery\common\models\query\UserQuery
+     */
+    public function getCreatedBy()
+    {
+        return $this->hasOne(User::className(), ['id' => 'created_by']);
     }
 
     /**
