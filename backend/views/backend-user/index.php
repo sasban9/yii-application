@@ -7,30 +7,16 @@ use johnitvn\ajaxcrud\CrudAsset;
 use johnitvn\ajaxcrud\BulkButtonWidget;
 
 /* @var $this yii\web\View */
-/* @var $searchModel app\models\UserSearch */
+/* @var $searchModel backend\models\BackendUserSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Users');
+$this->title = Yii::t('app', 'Backend Users');
 $this->params['breadcrumbs'][] = $this->title;
 
 CrudAsset::register($this);
 
 ?>
-<div class="row">
-    <div class="col-md-3">
-        <div id="manager-menu" class="list-group">
-            <a class="list-group-item active" href="/admin/user"><i class="glyphicon glyphicon-chevron-right pull-right"></i><span>Users</span></a>
-            <a class="list-group-item" href="/admin/assignment"><i class="glyphicon glyphicon-chevron-right pull-right"></i><span>Assignment</span></a>
-            <a class="list-group-item" href="/admin/role"><i class="glyphicon glyphicon-chevron-right pull-right"></i><span>Roles</span></a>
-            <a class="list-group-item" href="/admin/permission"><i class="glyphicon glyphicon-chevron-right pull-right"></i><span>Permissions</span></a>
-            <a class="list-group-item" href="/admin/route"><i class="glyphicon glyphicon-chevron-right pull-right"></i><span>Routes</span></a>
-            <a class="list-group-item" href="/admin/rule"><i class="glyphicon glyphicon-chevron-right pull-right"></i><span>Rules</span></a>
-            <a class="list-group-item" href="/admin/menu"><i class="glyphicon glyphicon-chevron-right pull-right"></i><span>Menus</span></a>        
-        </div>
-    </div>
-    <div class="col-md-9">
-
-<div class="user-index">
+<div class="backend-user-index">
     <div id="ajaxCrudDatatable">
         <?=GridView::widget([
             'id'=>'crud-datatable',
@@ -41,7 +27,7 @@ CrudAsset::register($this);
             'toolbar'=> [
                 ['content'=>
                     Html::a('<i class="glyphicon glyphicon-plus"></i>', ['create'],
-                    ['role'=>'modal-remote','title'=> 'Create new Users','class'=>'btn btn-default']).
+                    ['role'=>'modal-remote','title'=> 'Create new Backend Users','class'=>'btn btn-default']).
                     Html::a('<i class="glyphicon glyphicon-repeat"></i>', [''],
                     ['data-pjax'=>1, 'class'=>'btn btn-default', 'title'=>'Reset Grid']).
                     '{toggleData}'.
@@ -53,7 +39,7 @@ CrudAsset::register($this);
             'responsive' => true,          
             'panel' => [
                 'type' => 'primary', 
-                'heading' => '<i class="glyphicon glyphicon-list"></i> Users listing',
+                'heading' => '<i class="glyphicon glyphicon-list"></i> Backend Users listing',
                 'before'=>'<em>* Resize table columns just like a spreadsheet by dragging the column edges.</em>',
                 'after'=>BulkButtonWidget::widget([
                             'buttons'=>Html::a('<i class="glyphicon glyphicon-trash"></i>&nbsp; Delete All',
@@ -71,8 +57,6 @@ CrudAsset::register($this);
             ]
         ])?>
     </div>
-</div>
-</div>
 </div>
 <?php Modal::begin([
     "id"=>"ajaxCrudModal",

@@ -2,28 +2,29 @@
 
 namespace app\models;
 
+use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\User;
 
 /**
- * UserSearch represents the model behind the search form of `app\models\User`.
+ * UserSearch represents the model behind the search form about `app\models\User`.
  */
 class UserSearch extends User
 {
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['username', 'auth_key', 'password_hash', 'password_reset_token', 'email', 'verification_token'], 'safe'],
+            [['id', 'status_id', 'created_at', 'updated_at', 'group_id'], 'integer'],
+            [['auth_key', 'password_hash', 'password_reset_token', 'email', 'verification_token'], 'safe'],
         ];
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function scenarios()
     {
@@ -42,9 +43,6 @@ class UserSearch extends User
     {
         $query = User::find();
 
-        // add conditions that should always apply here
-        if(\Yii::$app->user->identity)$query = $query->where(['group_id' => \Yii::$app->user->identity->group_id]);
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
         ]);
@@ -57,17 +55,22 @@ class UserSearch extends User
             return $dataProvider;
         }
 
-        // grid filtering conditions
+        if(\Yii::$app->user->identity->group_id != 0) {
+            $query->andFilterWhere([
+                'group_id' => \Yii::$app->user->identity->group_id,
+            ]);
+        }
+
         $query->andFilterWhere([
             'id' => $this->id,
-            'status' => $this->status,
+            'status_id' => $this->status_id,
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-            'group_id' => $this->group_id,
+            'updated_at' => $this->updated_at
         ]);
 
-        $query->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'auth_key', $this->auth_key])
+        $query->andFilterWhere(['like', 'auth_key', $this->auth_key])
+            #->andFilterWhere(['like', 'username', $this->username])
+            
             ->andFilterWhere(['like', 'password_hash', $this->password_hash])
             ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
             ->andFilterWhere(['like', 'email', $this->email])

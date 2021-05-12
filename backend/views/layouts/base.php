@@ -30,13 +30,13 @@ AppAsset::register($this);
     <?php echo $content ?>
 </div>
 
-<!-- <footer class="footer">
+<footer class="d-none">
     <div class="container">
         <p class="pull-left">&copy; <?= Html::encode(Yii::$app->name) ?> <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
-</footer> -->
+</footer>
 
 <?php $this->endBody() ?>
 </body>

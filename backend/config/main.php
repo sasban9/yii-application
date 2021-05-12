@@ -11,8 +11,24 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            'admin/*',
+            'site/*',
+            'rbac/*',
+            'gii/*',
+            'user/*',
+            'debug/*'
+        ]
+    ],
     'components' => [
+        'assetManager' => [
+            'appendTimestamp' => true,
+        ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
@@ -41,31 +57,66 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'rbac/user/view/<username>' => 'user/view',
+                //'admin/user' => 'user/index',
             ],
         ],
         
     ],
     'modules' => [
-        'gridview' => ['class' => 'kartik\grid\Module'],
-        'gii' => [
-            'class' => 'yii\gii\Module',
-        ],
         'rbac' =>  [
-            'class' => 'app\rbacplus\Module',
+            'class' => 'johnitvn\rbacplus\Module',
             'userModelClassName'=>null,
             'userModelIdField'=>'id',
             'userModelLoginField'=>'username',
             'userModelLoginFieldLabel'=>null,
-            'userModelExtraDataColumls'=>[
-                [
-                    'attributes' => 'group_id',
-                    // 'value'=>function($model){
-                    //     return $model->group_id;
-                    // }
-                ]
-            ],
+            'userModelExtraDataColumls'=>null,
             'beforeCreateController'=>null,
             'beforeAction'=>null
+        ],
+        'admin' => [
+            'class' => 'mdm\admin\Module',
+            'layout' => 'left-menu',
+            'controllerMap' => [
+                'assignment' => [
+                   'class' => 'mdm\admin\controllers\AssignmentController',
+                   /* 'userClassName' => 'app\models\User', */
+                   'idField' => 'id',
+                   'usernameField' => 'email',
+                   'fullnameField' => 'firstname',
+                   'extraColumns' => [
+                       [
+                           'attribute' => 'full_name',
+                           'label' => 'Full Name',
+                           'value' => function($model, $key, $index, $column) {
+                               return $model->email;
+                           },
+                       ],
+                       [
+                           'attribute' => 'email',
+                           'label' => 'Email',
+                           'value' => function($model, $key, $index, $column) {
+                               return $model->email;
+                           },
+                       ],
+                       [
+                           'attribute' => 'status',
+                           'label' => 'Status',
+                           'value' => function($model, $key, $index, $column) {
+                               return $model->status_id;
+                           },
+                       ],
+                   ],
+                   'searchClass' => 'app\models\UserSearch'
+               ],
+           ],
+        ],
+        'gridview' => [
+            'class' => 'kartik\grid\Module',
+            #'class' => 'yii\grid\GridView',
+        ],
+        'gii' => [
+            'class' => 'yii\gii\Module',
         ]
     ],
     'params' => $params,
